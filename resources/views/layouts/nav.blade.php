@@ -1,17 +1,23 @@
 <ul class="nav nav-tabs nav-stacked">
 				<li class="active">
-					<a href="#">Home</a>
+					<a href="#">Assalaam Motorsport</a>
 				</li>
 				<li>
-					<a href="#">Data Barang</a>
+					<a href="/barang">Data Barang</a>
 				</li>
 				<li>
-					<a href="/">Data Jasa</a>
+					<a href="/jasa">Data Jasa</a>
 				</li>
 				<li>
-					<a href="#">Data Pelanggan</a>
+					<a href="/pelanggan">Data Pelanggan</a>
 				</li>
 				<li>
-					<a href="/">Data Supplier</a>
+					<a href="/supplier">Data Supplier</a>
+				</li>
+				<li>
+					<a href="#">Data Pembelian</a>
+				</li>
+				<li>
+					<a href="#">Data Penjualan</a>
 				</li>
 			</ul>

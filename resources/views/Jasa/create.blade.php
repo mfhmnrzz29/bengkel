@@ -1,13 +1,15 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
-<!--nav-->
+<div class="container-fluid">
+	<div class="row">
+	<div class="col-md-3">
+		<!--nav-->
 				@include('layouts.nav')
 			<!--end nav-->
-	<div class="row">
-		<center><h1>Data Jasa</h1></center>
+	</div>
+	<div class="col-md-9">
 		<div class="panel panel-primary">
-			<div class="panel-heading">Data Jasa
+			<div class="panel-heading">Data Jasa - Create
 			<div class="panel-title pull-right">
 			<a href="{{ URL::previous() }}">Kembali</a></div></div>
 			<div class="panel-body">
@@ -27,7 +29,7 @@
 						<button type="reset" class="btn btn-danger">Reset</button>
 					</div>
 				</form>
-				
+				</div>
 			</div>
 		</div>
 	</div>

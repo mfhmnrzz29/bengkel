@@ -1,14 +1,16 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
-<!--nav-->
+<div class="container-fluid">
+	<div class="row">
+	<div class="col-md-3">
+		<!--nav-->
 				@include('layouts.nav')
 			<!--end nav-->
-	<div class="row">
-		<center><h1>Data Supplier</h1></center>
+	</div>
+	<div class="col-md-9">
 		<div class="panel panel-primary">
 			<div class="panel-heading">Data Supplier
-			<div class="panel-title pull-right"><a href="/supplier/create">Tambah Data</a></div></div>
+			<div class="panel-title pull-right"><a href="/supplier/create">+Tambah Data</a></div></div>
 			<div class="panel-body">
 				<table class="table">
 					<thead>
@@ -24,7 +26,7 @@
 							<td>{{$data->nama}}</td>
 							<td>{{$data->alamat}}</td>
 							<td>
-								<a class="btn btn-success" href="/supplier/{{$data->id}}/edit">Edit</a>
+								<a class="btn btn-success" href="/supplier/{{$data->id}}/edit"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
 							</td>
 							<td>
 								<a class="btn btn-primary" href="/supplier/{{$data->id}}">Show</a>
@@ -42,6 +44,7 @@
 					</tbody>
 				</table>
 			</div>
+		</div>
 		</div>
 	</div>
 </div>

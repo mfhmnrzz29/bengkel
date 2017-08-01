@@ -2,12 +2,12 @@
 @section('content')
 <div class="container-fluid">
 	<div class="row">
-	<div class="col-md-3">
+	<div class="col-md-3" background = "blue">
 		<!--nav-->
 				@include('layouts.nav')
 			<!--end nav-->
 	</div>
-		<center><h1>Data Jasa</h1></center>
+	<div class="col-md-9">
 		<div class="panel panel-primary">
 			<div class="panel-heading">Data Jasa
 			<div class="panel-title pull-right"><a href="/jasa/create">+Tambah Data</a></div></div>
@@ -43,6 +43,7 @@
 						@endforeach
 					</tbody>
 				</table>
+			</div>
 			</div>
 		</div>
 	</div>

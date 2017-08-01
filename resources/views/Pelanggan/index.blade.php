@@ -1,14 +1,16 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
-<!--nav-->
+<div class="container-fluid">
+	<div class="row">
+	<div class="col-md-3">
+		<!--nav-->
 				@include('layouts.nav')
 			<!--end nav-->
-	<div class="row">
-		<center><h1>Data Pelanggan</h1></center>
+	</div>
+	<div class="col-md-9">
 		<div class="panel panel-primary">
 			<div class="panel-heading">Data Pelanggan
-			<div class="panel-title pull-right"><a href="/pelanggan/create">Tambah Data</a></div></div>
+			<div class="panel-title pull-right"><a href="/pelanggan/create">+Tambah Data</a></div></div>
 			<div class="panel-body">
 				<table class="table">
 					<thead>
@@ -43,6 +45,7 @@
 						@endforeach
 					</tbody>
 				</table>
+			</div>
 			</div>
 		</div>
 	</div>
