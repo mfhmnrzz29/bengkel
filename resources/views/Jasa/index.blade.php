@@ -2,7 +2,7 @@
 @section('content')
 <div class="container-fluid">
 	<div class="row">
-	<div class="col-md-3" background = "blue">
+	<div class="col-md-3">
 		<!--nav-->
 				@include('layouts.nav')
 			<!--end nav-->
