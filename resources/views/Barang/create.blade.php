@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
+<!--nav-->
+				@include('layouts.nav')
+			<!--end nav-->
 	<div class="row">
 		<center><h1>Data Barang</h1></center>
 		<div class="panel panel-primary">
