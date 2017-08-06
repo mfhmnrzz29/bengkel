@@ -15,6 +15,16 @@ class CreatePembeliansTable extends Migration
     {
         Schema::create('pembelians', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_supplier')->unsigned()->index();
+            $table->foreign('id_supplier')->references('id')->on('suppliers')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+            $table->integer('id_barang')->unsigned()->index();      
+            $table->foreign('id_barang')->references('id')->on('barangs')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');    
+            $table->integer('jumlah');
+            $table->integer('total_harga');          
             $table->timestamps();
         });
     }

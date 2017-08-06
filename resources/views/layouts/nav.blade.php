@@ -1,23 +1,23 @@
-<ul class="nav nav-tabs nav-stacked">
-				<li class="active">
-					<a href="#">Assalaam Motorsport</a>
-				</li>
-				<li>
-					<a href="/barang">Data Barang</a>
-				</li>
-				<li>
-					<a href="/jasa">Data Jasa</a>
-				</li>
-				<li>
-					<a href="/pelanggan">Data Pelanggan</a>
-				</li>
-				<li>
-					<a href="/supplier">Data Supplier</a>
-				</li>
-				<li>
-					<a href="#">Data Pembelian</a>
-				</li>
-				<li>
-					<a href="#">Data Penjualan</a>
-				</li>
-			</ul>
+<div class="jumbotron">
+
+		<div class="btn-group-vertical">
+			<button type="button" class="btn btn-info"><a href="/barang">
+			<i class="fa fa-btn fa-cubes"></i> Data Barang</a></button>
+		
+			<button type="button" class="btn btn-info"><a href="/jasa">
+			<i class="fa fa-btn fa-motorcycle"></i> Data Jasa      </a></button>
+		
+			<button type="button" class="btn btn-info"><a href="/pelanggan">
+			<i class="fa fa-btn fa-child"></i> Data Pelanggan</a></button>
+		
+		
+			<button type="button" class="btn btn-info"><a href="/supplier">
+			<i class="fa fa-btn fa-cart-plus"></i> Data Supplier</a></button>
+		
+			<button type="button" class="btn btn-info"><a href="/pembelian">
+			<i class="fa fa-btn fa-arrow-circle-down"></i> Data Pembelian</a></button>
+		
+			<button type="button" class="btn btn-info"><a href="/penjualan">
+			<i class="fa fa-btn fa-arrow-circle-up"></i> Data Penjualan</a></button>
+		</div>	
+			</div>

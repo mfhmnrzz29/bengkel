@@ -15,6 +15,24 @@ class CreatePenjualansTable extends Migration
     {
         Schema::create('penjualans', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_pelanggan')->unsigned();
+            $table->foreign('id_pelanggan')->references('id')->on('pelanggans')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+            $table->integer('id_barang')->unsigned();      
+            $table->foreign('id_barang')->references('id')->on('barangs')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade'); 
+            $table->integer('id_jasa')->unsigned();      
+            $table->foreign('id_jasa')->references('id')->on('jasas')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+            $table->integer('id_karyawan')->unsigned();
+            $table->foreign('id_karyawan')->references('id')->on('users')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');          
+            $table->integer('jumlah');
+            $table->integer('total_harga');          
             $table->timestamps();
         });
     }

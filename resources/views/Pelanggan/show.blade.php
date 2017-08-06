@@ -8,6 +8,7 @@
 			<!--end nav-->
 	</div>
 	<div class="col-md-9">
+	<div class="jumbotron">
 		<div class="panel panel-primary">
 			<div class="panel-heading">Data Pelanggan
 			<div class="panel-title pull-right">
@@ -30,6 +31,7 @@
 						<input type="text" name="no_telepon" class="form-control" required="" value="{{$pelanggan->no_telepon}}" readonly="">
 					</div>
 				</form>
+			</div>
 			</div>
 			</div>
 		</div>

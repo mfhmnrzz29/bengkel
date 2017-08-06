@@ -8,6 +8,7 @@
 			<!--end nav-->
 	</div>
 	<div class="col-md-9">
+	<div class="jumbotron">
 		<div class="panel panel-primary">
 			<div class="panel-heading">Data Jasa - Detail
 			<div class="panel-title pull-right">
@@ -30,6 +31,7 @@
 						<button type="reset" class="btn btn-danger">Reset</button>
 					</div>
 				</form>
+				</div>
 				</div>
 			</div>
 		</div>

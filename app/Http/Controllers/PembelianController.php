@@ -15,6 +15,8 @@ class PembelianController extends Controller
     public function index()
     {
         //
+        $pembelian = Pembelian::all();
+        return view('pembelian.index', compact('pembelian'));
     }
 
     /**
@@ -25,6 +27,7 @@ class PembelianController extends Controller
     public function create()
     {
         //
+        return view('pembelian.create');
     }
 
     /**

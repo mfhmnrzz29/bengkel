@@ -8,6 +8,7 @@
 			<!--end nav-->
 	</div>
 	<div class="col-md-9">
+	<div class="jumbotron">
 		<div class="panel panel-primary">
 			<div class="panel-heading">Data Pelanggan
 			<div class="panel-title pull-right"><a href="/pelanggan/create">+Tambah Data</a></div></div>
@@ -49,5 +50,6 @@
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 @endsection

@@ -39,7 +39,7 @@ class SupplierController extends Controller
     public function store(Request $request)
     {
         //
-        $supplier = new Pelanggan;
+        $supplier = new Supplier;
         $supplier->nama = $request->nama;
         $supplier->alamat = $request->alamat;
         $supplier->save();
@@ -55,7 +55,7 @@ class SupplierController extends Controller
     public function show($id)
     {
         //
-        $supplier = Supplier::fidOrFail($id);
+        $supplier = Supplier::findOrFail($id);
         return view('supplier.show', compact('supplier'));
     }
 
@@ -68,7 +68,7 @@ class SupplierController extends Controller
     public function edit($id)
     {
         //
-        $supplier = Supplier::fidOrFail($id);
+        $supplier = Supplier::findOrFail($id);
         return view('supplier.edit', compact('supplier'));
     }
 
@@ -82,7 +82,7 @@ class SupplierController extends Controller
     public function update(Request $request, $id)
     {
         //
-         $supplier = Supplier::fidOrFail($id);
+         $supplier = Supplier::findOrFail($id);
          $supplier->nama = $request->nama;
         $supplier->alamat = $request->alamat;
         $supplier->save();
@@ -98,7 +98,7 @@ class SupplierController extends Controller
     public function destroy($id)
     {
         //
-        $supplier = Supplier::fidOrFail($id);
+        $supplier = Supplier::findOrFail($id);
         $supplier->delete();
         return redirect('supplier');
     }

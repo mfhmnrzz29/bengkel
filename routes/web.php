@@ -12,13 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+    return redirect('home');
 });
 
+Route::group(['middleware'=>['auth']], function(){
 Route::resource('/barang', 'BarangController');
 Route::resource('/jasa', 'JasaController');
 Route::resource('/pelanggan', 'PelangganController');
 Route::resource('/supplier', 'SupplierController');
+Route::resource('/pembelian', 'PembelianController');
+Route::resource('/penjualan', 'PenjualanController');
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

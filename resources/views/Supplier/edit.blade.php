@@ -8,6 +8,7 @@
 			<!--end nav-->
 	</div>
 	<div class="col-md-9">
+	<div class="jumbotron">
 		<div class="panel panel-primary">
 			<div class="panel-heading">Data Supplier
 			<div class="panel-title pull-right">
@@ -33,6 +34,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 </div>
 @endsection

@@ -8,6 +8,7 @@
 			<!--end nav-->
 	</div>
 	<div class="col-md-9">
+	<div class="jumbotron">
 		<div class="panel panel-primary">
 			<div class="panel-heading">Data Barang
 			<div class="panel-title pull-right"><a href="/barang/create">+Tambah Data</a></div></div>
@@ -32,10 +33,10 @@
 							<td>{{$data->jumlah_barang}}</td>
 							<td>{{$data->satuan}}</td>
 							<td>
-								<a class="btn btn-success" href="/barang/{{$data->id}}/edit">Edit</a>
+								<a class="btn btn-success" href="/barang/{{$data->id}}/edit"><i class="fa fa-btn fa-edit"></i> Edit</a>
 							</td>
 							<td>
-								<a class="btn btn-primary" href="/barang/{{$data->id}}">Show</a>
+								<a class="btn btn-primary" href="/barang/{{$data->id}}"><i class="fa fa-btn fa-info-circle"></i> Show</a>
 							</td>
 							<td>
 								<form action="{{route('barang.destroy', $data->id)}}" method="POST">
@@ -51,6 +52,7 @@
 				</table>
 			</div>
 			</div>
+		</div>
 		</div>
 	</div>
 </div>
