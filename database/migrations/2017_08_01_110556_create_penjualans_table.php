@@ -19,11 +19,11 @@ class CreatePenjualansTable extends Migration
             $table->foreign('id_pelanggan')->references('id')->on('pelanggans')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
-            $table->integer('id_barang')->unsigned();      
+            $table->integer('id_barang')->unsigned()->nullable();      
             $table->foreign('id_barang')->references('id')->on('barangs')
                   ->onDelete('cascade')
                   ->onUpdate('cascade'); 
-            $table->integer('id_jasa')->unsigned();      
+            $table->integer('id_jasa')->unsigned()->nullable();      
             $table->foreign('id_jasa')->references('id')->on('jasas')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');

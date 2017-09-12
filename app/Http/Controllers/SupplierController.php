@@ -12,6 +12,7 @@ class SupplierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+  
     public function index()
     {
         //
@@ -39,9 +40,15 @@ class SupplierController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+        'nama' =>['required', 'unique:suppliers'],
+        'alamat' =>['required'],
+        'no_telepon' =>['required','numeric','unique:suppliers'],
+    ]);
         $supplier = new Supplier;
         $supplier->nama = $request->nama;
         $supplier->alamat = $request->alamat;
+        $supplier->no_telepon = $request->no_telepon;
         $supplier->save();
         return redirect('supplier');
     }
@@ -82,9 +89,15 @@ class SupplierController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+        'nama' =>['required'],
+        'alamat' =>['required'],
+        'no_telepon' =>['required','numeric'],
+    ]);
          $supplier = Supplier::findOrFail($id);
          $supplier->nama = $request->nama;
         $supplier->alamat = $request->alamat;
+        $supplier->no_telepon = $request->no_telepon;
         $supplier->save();
         return redirect('supplier');
     }

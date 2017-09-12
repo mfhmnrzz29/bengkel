@@ -8,7 +8,7 @@
 			<!--end nav-->
 	</div>
 	<div class="col-md-9">
-	<div class="jumbotron">
+	
 		<div class="panel panel-primary">
 			<div class="panel-heading">Data Barang
 			<div class="panel-title pull-right"><a href="/barang/create">+Tambah Data</a></div></div>
@@ -29,28 +29,29 @@
 						<tr>
 							<td>{{$data->kode_barang}}</td>
 							<td>{{$data->nama_barang}}</td>
-							<td>{{$data->harga_barang}}</td>
+							<td>Rp.{{$data->harga_barang}}</td>
 							<td>{{$data->jumlah_barang}}</td>
 							<td>{{$data->satuan}}</td>
 							<td>
 								<a class="btn btn-success" href="/barang/{{$data->id}}/edit"><i class="fa fa-btn fa-edit"></i> Edit</a>
 							</td>
 							<td>
-								<a class="btn btn-primary" href="/barang/{{$data->id}}"><i class="fa fa-btn fa-info-circle"></i> Show</a>
-							</td>
-							<td>
-								<form action="{{route('barang.destroy', $data->id)}}" method="POST">
+								<form class="delete" action="{{route('barang.destroy', $data->id)}}" method="POST">
 									<input type="hidden" name="_method" value="DELETE">
 									<input type="hidden" name="_token">
 									<input type="submit" class="btn btn-danger" value="Delete">
 									{{csrf_field()}}
 								</form>
+								<script>
+    $(".delete").on("submit", function(){
+        return confirm("Do you want to delete this item?");
+    });
+</script>
 							</td>
 						</tr>
 						@endforeach
 					</tbody>
 				</table>
-			</div>
 			</div>
 		</div>
 		</div>

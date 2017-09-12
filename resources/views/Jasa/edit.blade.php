@@ -8,12 +8,19 @@
 			<!--end nav-->
 	</div>
 	<div class="col-md-9">
-	<div class="jumbotron">
+
 		<div class="panel panel-primary">
 			<div class="panel-heading">Data Jasa - Edit
 			<div class="panel-title pull-right">
 			<a href="{{ URL::previous() }}">Kembali</a></div></div>
 			<div class="panel-body">
+			@if($errors->any())
+			<div class="flash alert-danger">
+				@foreach($errors->all() as $err)
+					<li><span>{{ $err }}</span></li>
+				@endforeach
+			</div>
+			@endif
 				<form action="{{route('jasa.update', $jasa->id)}}" method="POST">
 					<input type="hidden" name="_method" value="PUT">
 					<input type="hidden" name="_token" value="{{csrf_token()}}">

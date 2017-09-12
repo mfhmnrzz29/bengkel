@@ -3,17 +3,24 @@
 <div class="container-fluid">
 	<div class="row">
 	<div class="col-md-3">
-	<!--nav-->
+		<!--nav-->
 				@include('layouts.nav')
 			<!--end nav-->
-			</div>
+	</div>
 			<div class="col-md-9">
-			<div class="jumbotron">
+			
 		<div class="panel panel-primary">
 			<div class="panel-heading">Data Barang - Edit
 			<div class="panel-title pull-right">
 			<a href="{{ URL::previous() }}">Kembali</a></div></div>
 			<div class="panel-body">
+			@if($errors->any())
+			<div class="flash alert-danger">
+				@foreach($errors->all() as $err)
+					<li><span>{{ $err }}</span></li>
+				@endforeach
+			</div>
+			@endif
 				<form action="{{route('barang.update', $barang->id)}}" method="POST">
 					<input type="hidden" name="_method" value="PUT">
 					<input type="hidden" name="_token" value="{{csrf_token()}}">

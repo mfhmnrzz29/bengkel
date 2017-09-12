@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Jasa;
 use Illuminate\Http\Request;
+use Input;
 
 class JasaController extends Controller
 {
@@ -12,6 +13,11 @@ class JasaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     protected $rules = [
+        'nama' => ['required','unique:jasas'],
+        'harga' =>['required','integer'],
+    ];
+
     public function index()
     {
         //
@@ -39,7 +45,11 @@ class JasaController extends Controller
     public function store(Request $request)
     {
         //
-        $jasa = new Jasa;
+        $this->validate($request, [
+        'nama' => ['required','unique:jasas'],
+        'harga' =>['required','integer'],
+    ]);
+        $jasa = new Jasa();
         $jasa->nama = $request->nama;
         $jasa->harga = $request->harga;
         $jasa->save();
@@ -84,6 +94,10 @@ class JasaController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+        'nama' => ['required'],
+        'harga' =>['required','integer'],
+    ]);
         $jasa = Jasa::findOrFail($id);
         $jasa->nama = $request->nama;
         $jasa->harga = $request->harga;
@@ -97,7 +111,7 @@ class JasaController extends Controller
      * @param  \App\Jasa  $jasa
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Jasa $jasa)
+    public function destroy($id)
     {
         //
         $jasa = Jasa::findOrFail($id);

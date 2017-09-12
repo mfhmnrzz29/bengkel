@@ -9,10 +9,10 @@ class Pembelian extends Model
     //
 
     public function supplier() {
-    	return $this->belongsTo('App\Supplier');
+    	return $this->belongsTo('App\Supplier', 'id_supplier');
     }
 
     public function barang() {
-    	return $this->belongsTo('App\Barang');
+    	return $this->belongsTo('App\Barang', 'id_barang');
     }
 }

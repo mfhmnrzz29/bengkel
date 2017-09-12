@@ -8,7 +8,7 @@
 			<!--end nav-->
 	</div>
 	<div class="col-md-9">
-	<div class="jumbotron">
+
 		<div class="panel panel-primary">
 			<div class="panel-heading">Data Jasa - Detail
 			<div class="panel-title pull-right">
@@ -26,11 +26,7 @@
 						<label class="control-lable">Harga</label>
 						<input type="text" name="harga" class="form-control" required="" value="{{$jasa->harga}}" readonly="">
 					</div>
-					<div class="form-group">
-						<button type="submit" class="btn btn-success">Simpan</button>
-						<button type="reset" class="btn btn-danger">Reset</button>
-					</div>
-				</form>
+					</form>
 				</div>
 				</div>
 			</div>

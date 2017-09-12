@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Pelanggan;
 use Illuminate\Http\Request;
+use Input;
 
 class PelangganController extends Controller
 {
@@ -15,7 +16,7 @@ class PelangganController extends Controller
     public function index()
     {
         //
-        $pelanggan = Pelanggan::all();
+        $pelanggan = Pelanggan::orderBy('nama','asc')->get();
         return view('pelanggan.index', compact('pelanggan'));
     }
 
@@ -39,6 +40,11 @@ class PelangganController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+        'nama' => ['required'],
+        'alamat' =>['required'],
+        'no_telepon' =>['required', 'numeric'],
+    ]);
         $pelanggan = new Pelanggan;
         $pelanggan->nama = $request->nama;
         $pelanggan->alamat = $request->alamat;
@@ -83,6 +89,11 @@ class PelangganController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+        'nama' => ['required'],
+        'alamat' =>['required'],
+        'no_telepon' =>['required', 'numeric'],
+    ]);
         $pelanggan = Pelanggan::findOrFail($id);
         $pelanggan->nama = $request->nama;
         $pelanggan->alamat = $request->alamat;

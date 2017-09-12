@@ -8,7 +8,7 @@
 			<!--end nav-->
 	</div>
 	<div class="col-md-9">
-	<div class="jumbotron">
+
 		<div class="panel panel-primary">
 			<div class="panel-heading">Data Supplier
 			<div class="panel-title pull-right"><a href="/supplier/create">+Tambah Data</a></div></div>
@@ -18,7 +18,8 @@
 						<tr>
 							<th>Nama Supplier</th>
 							<th>Alamat</th>
-							<th colspan="3"><center>Aksi</center></th>
+							<th>No Telepon</th>
+							<th colspan="2"><center>Aksi</center></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -26,17 +27,16 @@
 						<tr>
 							<td>{{$data->nama}}</td>
 							<td>{{$data->alamat}}</td>
+							<td>{{$data->no_telepon}}</td>
 							<td>
-								<a class="btn btn-success" href="/supplier/{{$data->id}}/edit"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
+								<center><a class="btn btn-success" href="/supplier/{{$data->id}}/edit"><i class="fa fa-btn fa-edit"></i></span>Edit</a></center>
 							</td>
-							<td>
-								<a class="btn btn-primary" href="/supplier/{{$data->id}}">Show</a>
-							</td>
+							
 							<td>
 								<form action="{{route('supplier.destroy', $data->id)}}" method="POST">
 									<input type="hidden" name="_method" value="DELETE">
 									<input type="hidden" name="_token">
-									<input type="submit" class="btn btn-danger" value="Delete">
+									<center><input type="submit" class="btn btn-danger" value="Delete"></center>
 									{{csrf_field()}}
 								</form>
 							</td>
@@ -47,6 +47,8 @@
 			</div>
 		</div>
 		</div>
+
+		
 	</div>
 </div>
 </div>

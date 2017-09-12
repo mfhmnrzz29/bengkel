@@ -9,16 +9,16 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Assalaam Motorsport</title>
-    <link href='icon.ico' rel='shortcut icon'>
+    <link href="{{ asset('a.png') }}" rel='shortcut icon'>
 
     <!-- Styles -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
+<body background="{{ asset('b.jpg') }}">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
@@ -44,8 +44,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Daftar</a></li>
+                            <li><a href="{{ route('login') }}"><i class="fa fa-btn fa-sign-in"></i> Login</a></li>
+                            
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -72,12 +72,13 @@
                 </div>
             </div>
         </nav>
+        </div>
 
         @yield('content')
     </div>
 
     <!-- Scripts -->
+    <script src="{{asset('js/custom.js')}}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
-
 </body>
 </html>

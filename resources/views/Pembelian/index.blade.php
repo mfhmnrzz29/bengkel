@@ -8,7 +8,7 @@
 			<!--end nav-->
 	</div>
 	<div class="col-md-9">
-	<div class="jumbotron">
+
 		<div class="panel panel-primary">
 			<div class="panel-heading">Data Pembelian
 			<div class="panel-title pull-right"><a href="/pembelian/create">+Tambah Data</a></div></div>
@@ -16,28 +16,26 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th>Nama Barang</th>
+							<th>No</th>
 							<th>Supplier</th>
-							<th>Harga</th>
-							<th>Jumlah</th></th>
-							<th>Total Harga</th>
 							<th>Tanggal</th>
 							<th colspan="3"><center>Aksi</center></th>
 						</tr>
 					</thead>
 					<tbody>
+					<?php
+					$no = 1;
+					?>
 						@foreach($pembelian as $data)
 						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>{{$no++}}</td>
+							<td>{{$data->supplier->nama}}</td>
+							<td>{{$data->created_at}}</td>
 							<td>
-								<a class="btn btn-success" href="/pembelian/{{$data->id}}/edit">Edit</a>
+								<a class="btn btn-success" href="/pembelian/{{$data->id}}/edit"><i class="fa fa-btn fa-edit"></i>Edit</a>
 							</td>
 							<td>
-								<a class="btn btn-primary" href="/pembelian/{{$data->id}}">Show</a>
+								<a class="btn btn-primary" href="/pembelian/{{$data->id}}"><i class="fa fa-btn fa-info-circle"></i>Show</a>
 							</td>
 							<td>
 								<form action="{{route('pembelian.destroy', $data->id)}}" method="POST">

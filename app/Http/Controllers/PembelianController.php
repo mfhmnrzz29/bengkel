@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Pembelian;
+use App\Barang;
+use App\Supplier;
 use Illuminate\Http\Request;
+use Input;
 
 class PembelianController extends Controller
 {
@@ -12,6 +15,13 @@ class PembelianController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $rules = [
+        'id_barang' => ['required'],
+        'id_supplier' =>['required'],
+        'harga' =>['required','integer'],
+        'jumlah' =>['required', 'integer'],
+    ];
+
     public function index()
     {
         //
@@ -27,7 +37,9 @@ class PembelianController extends Controller
     public function create()
     {
         //
-        return view('pembelian.create');
+        $barang = Barang::all();
+        $supplier = Supplier::all();
+        return view('pembelian.create', compact('barang', 'supplier'));
     }
 
     /**
@@ -39,6 +51,19 @@ class PembelianController extends Controller
     public function store(Request $request)
     {
         //
+        $pembelian = new Pembelian;
+        $pembelian->id_barang = $request->id_barang;
+        $pembelian->id_supplier = $request->id_supplier;
+        $pembelian->harga = $request->harga;
+        $pembelian->jumlah = $request->jumlah;
+        $pembelian->total_harga = $request->jumlah * $request->harga;
+        $pembelian->save();
+
+        $barang = Barang::findOrFail($pembelian->id_barang);
+        $barang->jumlah_barang = $barang->jumlah_barang + $request->jumlah;    
+        $barang->save();
+
+        return redirect('pembelian');
     }
 
     /**
@@ -47,9 +72,13 @@ class PembelianController extends Controller
      * @param  \App\Pembelian  $pembelian
      * @return \Illuminate\Http\Response
      */
-    public function show(Pembelian $pembelian)
+    public function show($id)
     {
         //
+        $pembelian = Pembelian::findOrFail($id);
+        $barang = Barang::all();
+        $supplier = Supplier::all();
+        return view('pembelian.show', compact('pembelian','barang', 'supplier'));
     }
 
     /**
@@ -58,9 +87,14 @@ class PembelianController extends Controller
      * @param  \App\Pembelian  $pembelian
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pembelian $pembelian)
+    public function edit($id)
     {
         //
+        $this->validate($request, $this->rules);
+        $pembelian = Pembelian::findOrFail($id);
+        $barang = Barang::all();
+        $supplier = Supplier::all();
+        return view('pembelian.edit', compact('pembelian','barang', 'supplier'));
     }
 
     /**
@@ -70,9 +104,19 @@ class PembelianController extends Controller
      * @param  \App\Pembelian  $pembelian
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pembelian $pembelian)
+    public function update(Request $request, $id)
     {
         //
+        
+        $pembelian = Pembelian::findOrFail($id);
+        $pembelian->id_barang = $request->id_barang;
+        $pembelian->id_supplier = $request->id_supplier;
+        $pembelian->harga = $request->harga;
+        $pembelian->jumlah = $request->jumlah;
+        $pembelian->total_harga = $request->jumlah * $request->harga;
+        $pembelian->save();
+        return redirect('pembelian');
+
     }
 
     /**
@@ -81,8 +125,11 @@ class PembelianController extends Controller
      * @param  \App\Pembelian  $pembelian
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pembelian $pembelian)
+    public function destroy($id)
     {
         //
+        $pembelian = Pembelian::findOrFail($id);
+        $pembelian->delete();
+        return redirect('pembelian');
     }
 }

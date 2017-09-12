@@ -8,12 +8,19 @@
 			<!--end nav-->
 	</div>
 	<div class="col-md-9">
-	<div class="jumbotron">
+
 		<div class="panel panel-primary">
 			<div class="panel-heading">Data Pelanggan - Create
 			<div class="panel-title pull-right">
 			<a href="{{ URL::previous() }}">Kembali</a></div></div>
 			<div class="panel-body">
+			@if($errors->any())
+			<div class="flash alert-danger">
+				@foreach($errors->all() as $err)
+					<li><span>{{ $err }}</span></li>
+				@endforeach
+			</div>
+			@endif
 				<form action="{{route('pelanggan.store')}}" method="post">
 					{{csrf_field()}}
 
@@ -27,7 +34,7 @@
 					</div>
 					<div class="form-group">
 						<label class="control-lable">Nomor Telepon</label>
-						<input type="text" name="no_telepon" class="form-control" >
+						<input type="text" name="no_telepon" class="form-control" required="">
 					</div>
 					<div class="form-group">
 						<button type="submit" class="btn btn-success">Simpan</button>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Barang;
 use Illuminate\Http\Request;
-
+use Input;
 class BarangController extends Controller
 {
     /**
@@ -12,10 +12,11 @@ class BarangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         //
-        $barang = Barang::all();
+        $barang = Barang::orderBy('nama_barang','asc')->get();
         return view('barang.index', compact('barang'));
     }
 
@@ -39,7 +40,14 @@ class BarangController extends Controller
     public function store(Request $request)
     {
         //
-        $barang = new Barang;
+        $this->validate($request, 
+        ['kode_barang' => ['required','unique:barangs'],
+        'nama_barang' =>['required','unique:barangs'],
+        'jumlah_barang' =>['required', 'integer'],
+        'harga_barang' =>['required','integer'],
+        'satuan' =>['required'],
+    ]);
+        $barang = new Barang();
         $barang->kode_barang = $request->kode_barang;
         $barang->nama_barang = $request->nama_barang;
         $barang->jumlah_barang = $request->jumlah_barang;
@@ -85,6 +93,13 @@ class BarangController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, 
+        ['kode_barang' => ['required'],
+        'nama_barang' =>['required'],
+        'jumlah_barang' =>['required', 'integer'],
+        'harga_barang' =>['required','integer'],
+        'satuan' =>['required'],
+    ]);
         $barang = Barang::findOrFail($id);
         $barang->kode_barang = $request->kode_barang;
         $barang->nama_barang = $request->nama_barang;
