@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Pembelian;
 use App\Barang;
 use App\Supplier;
-use Illuminate\Http\Request;
+use App\Http\Requests\PembelianRequest;
 use Input;
 
 class PembelianController extends Controller
@@ -15,12 +15,6 @@ class PembelianController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    protected $rules = [
-        'id_barang' => ['required'],
-        'id_supplier' =>['required'],
-        'harga' =>['required','integer'],
-        'jumlah' =>['required', 'integer'],
-    ];
 
     public function index()
     {
@@ -48,20 +42,35 @@ class PembelianController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PembelianRequest $request)
     {
         //
-        $pembelian = new Pembelian;
-        $pembelian->id_barang = $request->id_barang;
-        $pembelian->id_supplier = $request->id_supplier;
-        $pembelian->harga = $request->harga;
-        $pembelian->jumlah = $request->jumlah;
-        $pembelian->total_harga = $request->jumlah * $request->harga;
-        $pembelian->save();
+        
+        // return $request->all();
+        // $pembelian = new Pembelian;
+        // $pembelian->id_barang = $request->id_barang;
+        // $pembelian->id_supplier = $request->id_supplier;
+        // $pembelian->jumlah = $request->jumlah;
+    
+        // $barang = Barang::findOrFail($pembelian->id_barang);
+        // $barang->jumlah_barang = $barang->jumlah_barang + $request->jumlah;
+        // $pembelian->total_harga = $request->jumlah * $barang->harga_beli;    
+        // $barang->save();
+        // $pembelian->save();
 
-        $barang = Barang::findOrFail($pembelian->id_barang);
-        $barang->jumlah_barang = $barang->jumlah_barang + $request->jumlah;    
-        $barang->save();
+        for($id = 0; $id < count($request->id_barang); $id++){
+                $pembelian = new Pembelian;
+                $pembelian->id_barang = $request->id_barang[$id];
+                $pembelian->id_supplier = $request->id_supplier[$id];
+                $pembelian->jumlah = $request->jumlah[$id];
+            
+                $barang = Barang::findOrFail($request->id_barang[$id]);
+                $barang->jumlah_barang = $barang->jumlah_barang + $request->jumlah[$id];
+                $pembelian->total_harga = $request->jumlah[$id] * $barang->harga_beli;    
+                $barang->save();
+                $pembelian->save();
+                
+            }
 
         return redirect('pembelian');
     }
@@ -90,7 +99,6 @@ class PembelianController extends Controller
     public function edit($id)
     {
         //
-        $this->validate($request, $this->rules);
         $pembelian = Pembelian::findOrFail($id);
         $barang = Barang::all();
         $supplier = Supplier::all();
@@ -104,7 +112,7 @@ class PembelianController extends Controller
      * @param  \App\Pembelian  $pembelian
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PembelianRequest $request, $id)
     {
         //
         

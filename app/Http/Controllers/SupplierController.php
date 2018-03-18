@@ -1,9 +1,10 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use App\Supplier;
-use Illuminate\Http\Request;
+use App\Http\Requests\SupplierRequest;
 
 class SupplierController extends Controller
 {
@@ -37,14 +38,9 @@ class SupplierController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SupplierRequest $request)
     {
-        //
-        $this->validate($request, [
-        'nama' =>['required', 'unique:suppliers'],
-        'alamat' =>['required'],
-        'no_telepon' =>['required','numeric','unique:suppliers'],
-    ]);
+       
         $supplier = new Supplier;
         $supplier->nama = $request->nama;
         $supplier->alamat = $request->alamat;

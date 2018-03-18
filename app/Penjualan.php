@@ -20,9 +20,4 @@ class Penjualan extends Model
 	{
 		return $this->belongsTo('App\Jasa','id_jasa');
 	}
-
-     public function pelanggan()
-	{
-		return $this->belongsTo('App\Pelanggan','id_pelanggan');
-	}
 }

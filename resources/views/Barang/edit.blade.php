@@ -1,15 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.data')
 @section('content')
-<div class="container-fluid">
-	<div class="row">
-	<div class="col-md-3">
-		<!--nav-->
-				@include('layouts.nav')
-			<!--end nav-->
-	</div>
-			<div class="col-md-9">
-			
-		<div class="panel panel-primary">
+<div class="panel panel-primary">
 			<div class="panel-heading">Data Barang - Edit
 			<div class="panel-title pull-right">
 			<a href="{{ URL::previous() }}">Kembali</a></div></div>
@@ -27,19 +18,23 @@
 
 					<div class="form-group">
 						<label class="control-lable">Kode Barang</label>
-						<input type="text" name="kode_barang" class="form-control" required="" value="{{$barang->kode_barang}}">
+						<input type="text" name="kode_barang" class="form-control" required="" value="{{$barang->kode_barang}}" readonly="">
 					</div>
 					<div class="form-group">
 						<label class="control-lable">Nama Barang</label>
 						<input type="text" name="nama_barang" class="form-control" required="" value="{{$barang->nama_barang}}">
 					</div>
 					<div class="form-group">
-						<label class="control-lable">Harga Barang</label>
-						<input type="text" name="harga_barang" class="form-control" required="" value="{{$barang->harga_barang}}">
+						<label class="control-lable">Harga Beli</label>
+						<input type="text" name="harga_beli" class="form-control" required="" value="{{$barang->harga_beli}}">
 					</div>
 					<div class="form-group">
-						<label class="control-lable">Jumlah Barang</label>
-						<input type="text" name="jumlah_barang" class="form-control" required="" value="{{$barang->jumlah_barang}}"> 
+						<label class="control-lable">Harga Jual</label>
+						<input type="text" name="harga_jual" class="form-control" required="" value="{{$barang->harga_jual}}">
+					</div>
+					<div class="form-group">
+						<label class="control-lable">Stok Barang</label>
+						<input type="text" name="jumlah_barang" class="form-control" required="" value="{{$barang->jumlah_barang}}" readonly=""> 
 					</div>
 					<div class="form-group">
 						<label class="control-lable">Satuan</label>
@@ -52,8 +47,4 @@
 				</form>
 				</div>
 				</div>
-			</div>
-		</div>
-	</div>
-</div>
 @endsection

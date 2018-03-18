@@ -1,19 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.data')
 @section('content')
-<div class="container-fluid">
-	<div class="row">
-	<div class="col-md-3">
-		<!--nav-->
-				@include('layouts.nav')
-			<!--end nav-->
-	</div>
-	<div class="col-md-9">
-		<div class="panel panel-primary">
+<div class="panel panel-primary">
 			<div class="panel-heading">Data Supplier
 			<div class="panel-title pull-right">
 			<a href="{{ URL::previous() }}">Kembali</a></div></div>
 			<div class="panel-body">
-			@if($errors->any())
+		 	@if($errors->any())
 			<div class="flash alert-danger">
 				@foreach($errors->all() as $err)
 					<li><span>{{ $err }}</span></li>
@@ -42,8 +34,4 @@
 				</form>
 				</div>
 			</div>
-		</div>
-	</div>
-</div>
-</div>
 @endsection

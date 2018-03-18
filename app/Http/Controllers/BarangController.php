@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Barang;
+use App\Pembelian;
+use App\Supplier;
+use Session;
+use App\Http\Requests\BarangRequest;
 use Illuminate\Http\Request;
 use Input;
 class BarangController extends Controller
@@ -16,7 +20,7 @@ class BarangController extends Controller
     public function index()
     {
         //
-        $barang = Barang::orderBy('nama_barang','asc')->get();
+        $barang = Barang::with('Pembelian')->get();
         return view('barang.index', compact('barang'));
     }
 
@@ -28,7 +32,8 @@ class BarangController extends Controller
     public function create()
     {
         //
-        return view('barang.create');
+        $supplier = Supplier::all();
+        return view('barang.create', compact('supplier'));
     }
 
     /**
@@ -39,22 +44,58 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $this->validate($request, 
-        ['kode_barang' => ['required','unique:barangs'],
-        'nama_barang' =>['required','unique:barangs'],
-        'jumlah_barang' =>['required', 'integer'],
-        'harga_barang' =>['required','integer'],
-        'satuan' =>['required'],
-    ]);
-        $barang = new Barang();
-        $barang->kode_barang = $request->kode_barang;
-        $barang->nama_barang = $request->nama_barang;
-        $barang->jumlah_barang = $request->jumlah_barang;
-        $barang->harga_barang = $request->harga_barang;
-        $barang->satuan = $request->satuan;
+        
+    //     $barang = new Barang();
+    //     $barang->kode_barang = $request->kode_barang;
+    //     $barang->nama_barang = $request->nama_barang;
+    //     $barang->jumlah_barang = $request->jumlah_barang;
+    //     $barang->harga_beli = $request->harga_beli;
+    //     $barang->harga_jual = $request->harga_jual;
+    //     $barang->satuan = $request->satuan;
+
+    //     if($request->harga_jual<$request->harga_beli){
+    //         Session::flash("flash_notification",[
+    //             "level"=>"danger",
+    //             "message"=>"Harga jual tidak bisa kurang dari harga beli!"]);
+    //         return redirect('barang/create');
+    //     }
+    //     else{    
+    //     $barang->save();
+    // }
+
+    //     $pembelian = new Pembelian();
+    //     $pembelian->id_supplier = $request->id_supplier;
+    //     $pembelian->id_barang = $barang->id_barang;
+    //     $pembelian->jumlah = $request->jumlah_barang;
+    //     $pembelian->total_harga = $request->harga_beli * $request->jumlah_barang;
+    //     $pembelian->save();
+
+        for($id = 0; $id < count($request->kode_barang); $id++){
+                $barang = new Barang();
+                $barang->kode_barang = $request->kode_barang[$id];
+                $barang->nama_barang = $request->nama_barang[$id];
+                $barang->jumlah_barang = $request->jumlah_barang[$id];
+                $barang->harga_beli = $request->harga_beli[$id];
+                $barang->harga_jual = $request->harga_jual[$id];
+                $barang->satuan = $request->satuan[$id];
+
+                if($request->harga_jual[$id]<$request->harga_beli[$id]){
+                Session::flash("flash_notification",[
+                "level"=>"danger",
+                "message"=>"Harga jual tidak bisa kurang dari harga beli!"]);
+            return redirect('barang/create');
+        }
+        else{    
         $barang->save();
-        return redirect('barang');
+    }            
+                $pembelian = new Pembelian();
+                $pembelian->id_supplier = $request->id_supplier[$id];
+                $pembelian->id_barang = $barang->id;
+                $pembelian->jumlah = $request->jumlah_barang[$id];
+                $pembelian->total_harga = $request->harga_beli[$id] * $request->jumlah_barang[$id];
+                $pembelian->save();
+                
+            }          
     }
 
     /**
@@ -93,18 +134,10 @@ class BarangController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $this->validate($request, 
-        ['kode_barang' => ['required'],
-        'nama_barang' =>['required'],
-        'jumlah_barang' =>['required', 'integer'],
-        'harga_barang' =>['required','integer'],
-        'satuan' =>['required'],
-    ]);
         $barang = Barang::findOrFail($id);
-        $barang->kode_barang = $request->kode_barang;
         $barang->nama_barang = $request->nama_barang;
-        $barang->jumlah_barang = $request->jumlah_barang;
-        $barang->harga_barang = $request->harga_barang;
+        $barang->harga_beli = $request->harga_beli;
+        $barang->harga_jual = $request->harga_jual;
         $barang->satuan = $request->satuan;
         $barang->save();
         return redirect('barang');

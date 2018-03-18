@@ -22,8 +22,7 @@ class CreatePembeliansTable extends Migration
             $table->integer('id_barang')->unsigned()->index();      
             $table->foreign('id_barang')->references('id')->on('barangs')
                   ->onDelete('cascade')
-                  ->onUpdate('cascade'); 
-            $table->integer('harga');         
+                  ->onUpdate('cascade');          
             $table->integer('jumlah');
             $table->integer('total_harga');           
             $table->timestamps();

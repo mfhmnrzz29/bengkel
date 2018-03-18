@@ -1,15 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.data')
 @section('content')
-<div class="container-fluid">
-	<div class="row">
-	<div class="col-md-3">
-		<!--nav-->
-				@include('layouts.nav')
-			<!--end nav-->
-	</div>
-	<div class="col-md-9">
-
-		<div class="panel panel-primary">
+<div class="panel panel-primary">
 			<div class="panel-heading">Data Supplier
 			<div class="panel-title pull-right">
 			<a href="{{ URL::previous() }}">Kembali</a></div></div>
@@ -44,8 +35,4 @@
 				</form>
 				</div>
 			</div>
-		</div>
-	</div>
-	</div>
-</div>
 @endsection

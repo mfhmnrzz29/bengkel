@@ -15,10 +15,6 @@ class CreatePenjualansTable extends Migration
     {
         Schema::create('penjualans', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_pelanggan')->unsigned();
-            $table->foreign('id_pelanggan')->references('id')->on('pelanggans')
-                  ->onDelete('cascade')
-                  ->onUpdate('cascade');
             $table->integer('id_barang')->unsigned()->nullable();      
             $table->foreign('id_barang')->references('id')->on('barangs')
                   ->onDelete('cascade')

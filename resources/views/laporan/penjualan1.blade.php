@@ -1,24 +1,10 @@
-@extends('layouts.app')
-@section('content')
-<div class="container-fluid">
-	<div class="row">
-	<div class="col-md-3">
-		<!--nav-->
-				@include('layouts.nav')
-			<!--end nav-->
-	</div>
-	<div class="col-md-9">
-
-		<div class="panel panel-primary">
-			<div class="panel-heading">Laporan Penjualan
-			<div class="panel-title pull-right"></div></div>
-			<div class="panel-body">
-				<table class="table">
+				<center><h1> Laporan Penjualan Barang</h1></center>
+				<table border="1" width="100%">
 					<thead>
 						<tr>
 							<th>No</th>
-							<th>Tanggal</th>
-							<th>Nama Pelanggan</th>
+							<th>Tanggal dan Waktu</th>
+							<th>Jumlah</th>
 							<th>Total</th>
 						</tr>
 					</thead>
@@ -30,17 +16,10 @@
 						<tr>
 							<td>{{$no++}}</td>
 							<td>{{$data->created_at}}</td>
-							<td>{{$data->pelanggan->nama}}</td>
-							<td>Rp.{{$data->total_harga}}</td>
+							<td>{{$data->jumlah}} {{$data->barang->satuan}}</td>
+							<td>Rp.{{number_format($data->total_harga)}},-</td>
 						</tr>
 						@endforeach
 					</tbody>
 				</table>
-				Jumlah uang masuk dari tanggal {{$a}} sampai {{$b}}: Rp.{{$sum}}
-			</div>
-			</div>
-		</div>
-	</div>
-</div>
-</div>
-@endsection
+				Jumlah uang masuk dari tanggal {{$a}} sampai {{$b}}: Rp.{{ number_format($sum)}},-

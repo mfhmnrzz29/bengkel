@@ -1,15 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.data')
 @section('content')
-<div class="container-fluid">
-	<div class="row">
-	<div class="col-md-3">
-		<!--nav-->
-				@include('layouts.nav')
-			<!--end nav-->
-	</div>
-	<div class="col-md-9">
-
-		<div class="panel panel-primary">
+<div class="panel panel-primary">
 			<div class="panel-heading">Data Karyawan - Edit
 			<div class="panel-title pull-right">
 			<a href="{{ URL::previous() }}">Kembali</a></div></div>
@@ -35,7 +26,7 @@
 					</div>
 					<div class="form-group">
 						<label class="control-lable">Password</label>
-						<input type="text" name="password" class="form-control" value="{{$karyawan->password}}" required="">
+						<input type="password" name="password" class="form-control" value="{{$karyawan->password}}" required="">
 					</div>
 					<div class="form-group">
 						<button type="submit" class="btn btn-success">Simpan</button>
@@ -44,8 +35,4 @@
 				</form>
 				</div>
 				</div>
-			</div>
-		</div>
-	</div>
-</div>
 @endsection
